@@ -1,0 +1,40 @@
+services:
+  mariadb:
+    build: 
+    container_name: 
+    image: 
+    env_file:
+      - 
+    volumes:
+      -
+    networks:
+      - 
+    restart: 
+
+  wordpress:
+    build: 
+    container_name: 
+    image: 
+    env_file:
+      - 
+    depends_on:
+    - 
+    volumes:
+    - 
+    networks:
+    - 
+    restart: 
+
+  nginx:
+    build:
+    container_name:
+    image:
+    depends_on:
+      - 
+    volumes:
+    -
+    ports:
+    -
+    networks:
+    - 
+    restart:
