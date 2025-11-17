@@ -1,40 +1,13 @@
 services:
-  mariadb:
-    build: 
-    container_name: 
-    image: 
-    env_file:
-      - 
-    volumes:
-      -
-    networks:
-      - 
-    restart: 
-
-  wordpress:
-    build: 
-    container_name: 
-    image: 
-    env_file:
-      - 
-    depends_on:
-    - 
-    volumes:
-    - 
-    networks:
-    - 
-    restart: 
-
   nginx:
-    build:
-    container_name:
-    image:
-    depends_on:
-      - 
-    volumes:
-    -
+    build: ./requirements/nginx
+    container_name: nginx
     ports:
-    -
+      - "443:443"
     networks:
-    - 
-    restart:
+      - inception
+    restart: always
+
+networks:
+  inception:
+    driver: bridge
