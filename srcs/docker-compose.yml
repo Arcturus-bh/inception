@@ -2,6 +2,9 @@ services:
   nginx:
     build: ./requirements/nginx
     container_name: nginx
+    image: nginx
+    env_file:
+      .env
     ports:
       - "443:443"
     networks:

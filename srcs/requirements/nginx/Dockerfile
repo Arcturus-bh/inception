@@ -9,8 +9,7 @@ RUN mkdir -p /etc/nginx/ssl && \
     -out /etc/nginx/ssl/nginx.crt \
     -subj "/C=FR/ST=France/L=Nice/O=42/OU=Student/CN=aldalmas.42.fr"
 
-COPY conf/default.conf /etc/nginx/http.d/default.conf
-
+COPY conf/aldalmas.42.fr.conf /etc/nginx/http.d/aldalmas.42.fr.conf
 COPY www /var/www/html
 
 CMD ["nginx", "-g", "daemon off;"]
