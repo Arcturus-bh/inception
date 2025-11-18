@@ -1,16 +1,35 @@
 services:
   nginx:
+    restart: always
     build: ./requirements/nginx
     container_name: nginx
     image: nginx
-    env_file:
-      .env
-    ports:
-      - "443:443"
+
+    volumes:
+      - wordpress:/var/www/html
     networks:
       - inception
+    ports:
+      - "443:443"
+    env_file:
+      - .env
+
+  wordpress:
     restart: always
+    build: ./requirements/wordpress
+    container_name: wordpress
+    image: wordpress
+
+    volumes:
+      - wordpress:/var/www/html
+    networks:
+      - inception
+    env_file:
+      - .env
 
 networks:
   inception:
     driver: bridge
+
+volumes:
+  wordpress:
