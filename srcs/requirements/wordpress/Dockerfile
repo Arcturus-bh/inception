@@ -2,6 +2,7 @@ FROM alpine:3.21
 
 
 RUN apk update && apk add \
+    --no-cache mariadb-client \
     php82 \
     php82-fpm \
     php82-mysqli \
@@ -31,5 +32,8 @@ RUN sed -i 's|listen = 127.0.0.1:9000|listen = 9000|' /etc/php82/php-fpm.d/www.c
 RUN adduser -S www-data && \
     chown -R www-data:www-data /var/www/html
 
-# launch in foreground php-fpm
-CMD ["php-fpm82", "-F"]
+COPY tools/setup.sh /setup.sh
+
+RUN chmod +x /setup.sh
+
+ENTRYPOINT ["/setup.sh"]

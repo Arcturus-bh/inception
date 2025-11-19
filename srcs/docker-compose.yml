@@ -27,9 +27,23 @@ services:
     env_file:
       - .env
 
+  mariadb:
+    restart: always
+    build: ./requirements/mariadb
+    container_name: mariadb
+    image: mariadb
+
+    volumes:
+      - mariadb_data:/var/lib/mysql
+    networks:
+      - inception
+    env_file:
+      - .env
+
 networks:
   inception:
     driver: bridge
 
 volumes:
   wordpress:
+  mariadb_data:
